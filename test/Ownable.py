@@ -24,7 +24,8 @@ async def ownable_factory():
 @pytest.mark.asyncio
 async def test_initializer(ownable_factory):
     _, ownable, owner = ownable_factory
-    assert await ownable.get_owner().call() == (owner.contract_address,)
+    executed_info = await ownable.get_owner().call()
+    assert executed_info.result.res == owner.contract_address
 
 
 @pytest.mark.asyncio
@@ -32,4 +33,6 @@ async def test_transfer_ownership(ownable_factory):
     _, ownable, owner = ownable_factory
     new_owner = 123
     await signer.send_transaction(owner, ownable.contract_address, 'transfer_ownership', [new_owner])
-    assert await ownable.get_owner().call() == (new_owner,)
+
+    executed_info = await ownable.get_owner().call()
+    assert executed_info.result == (new_owner,)
