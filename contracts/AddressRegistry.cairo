@@ -11,7 +11,7 @@ end
 @external
 func get_L1_address{
         syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, 
-        range_check_ptr}(L2_address: felt) -> (res: felt):
+        range_check_ptr} (L2_address: felt) -> (res: felt):
     let (res) = L1_address.read(L2_address)
     return (res=res)
 end
@@ -19,7 +19,7 @@ end
 @external
 func set_L1_address{
         syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, 
-        range_check_ptr}(new_L1_address: felt):
+        range_check_ptr} (new_L1_address: felt):
     let (caller) = get_caller_address()
     L1_address.write(caller, new_L1_address)
     return ()

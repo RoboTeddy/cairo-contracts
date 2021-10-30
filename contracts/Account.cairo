@@ -47,7 +47,7 @@ end
 @view
 func assert_only_self{
         syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, 
-        range_check_ptr}():
+        range_check_ptr} ():
     let (self) = address.read()
     let (caller) = get_caller_address()
     assert self = caller
@@ -57,7 +57,7 @@ end
 @view
 func assert_initialized{
         syscall_ptr : felt*, pedersen_ptr : HashBuiltin*,
-        range_check_ptr}():
+        range_check_ptr} ():
     let (_initialized) = initialized.read()
     assert _initialized = 1
     return ()
@@ -70,7 +70,7 @@ end
 @view
 func get_public_key{
         syscall_ptr : felt*, pedersen_ptr : HashBuiltin*,
-        range_check_ptr}() -> (res: felt):
+        range_check_ptr} () -> (res: felt):
     let (res) = public_key.read()
     return (res=res)
 end
@@ -147,7 +147,8 @@ func is_valid_signature{
         message=hash,
         public_key=_public_key,
         signature_r=sig_r,
-        signature_s=sig_s)
+        signature_s=sig_s
+    )
 
     return ()
 end

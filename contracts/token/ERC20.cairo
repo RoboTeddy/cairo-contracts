@@ -163,8 +163,8 @@ end
 
 @external
 func decrease_allowance{
-        pedersen_ptr : HashBuiltin*, syscall_ptr : felt*, range_check_ptr
-        } (spender : felt, subtracted_value : felt):
+        pedersen_ptr : HashBuiltin*, syscall_ptr : felt*, 
+        range_check_ptr} (spender : felt, subtracted_value : felt):
     let (caller) = get_caller_address()
     let (current_allowance) = allowances.read(owner=caller, spender=spender)
     # checks that the decreased balance isn't below zero
